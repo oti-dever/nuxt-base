@@ -6,6 +6,10 @@ const compat = new FlatCompat()
 
 export default antfu({
   formatters: true,
+  markdown: false,
+  typescript: {
+    tsconfigPath: 'tsconfig.json',
+  },
 }, perfectionistNatural, ...compat.config({
   extends: ['plugin:tailwindcss/recommended'],
   rules: {

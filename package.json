@@ -3,10 +3,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --dotenv .env.development",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview --dotenv .env.preview",
+    "build": "nuxt build .playground",
+    "dev": "nuxt dev .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
     "postinstall": "nuxt prepare && pnpm simple-git-hooks",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -16,22 +16,22 @@
     "@eslint/eslintrc": "^3.0.1",
     "@formkit/auto-animate": "^0.8.1",
     "@nuxt/eslint-config": "^0.2.0",
+    "@nuxt/kit": "^3.10.2",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/i18n": "^8.1.1",
-    "@nuxtjs/seo": "2.0.0-rc.8",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
     "@types/node": "^20.11.17",
     "@vueuse/nuxt": "^10.7.2",
     "chalk": "^5.3.0",
-    "dayjs-nuxt": "^2.1.9",
     "eslint": "^8.56.0",
     "eslint-plugin-format": "^0.1.0",
     "eslint-plugin-perfectionist": "^2.5.0",
     "eslint-plugin-tailwindcss": "^3.14.2",
     "lint-staged": "^15.2.2",
+    "magic-string": "^0.30.7",
     "nuxt": "^3.10.2",
     "nuxt-icon": "^0.6.8",
     "nuxt-lodash": "^2.5.3",
@@ -45,6 +45,6 @@
     "pre-commit": "pnpm lint:fix"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "pnpm lint:fix"
   }
 }

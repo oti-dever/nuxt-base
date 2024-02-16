@@ -15,7 +15,6 @@ git submodule add https://github.com/oti-dever/nuxt-base base
 ```yaml
 packages:
   - base
-  - packages/*
 ```
 
 配置 Nuxt3 项目，编辑 `nuxt.config.js` 文件：
@@ -26,6 +25,13 @@ export default defineNuxtConfig({
     './base'
   ]
 })
+```
+
+启动项目：
+
+```bash
+pnpm i
+pnpm dev
 ```
 
 ## 更新

@@ -1,4 +1,12 @@
-import { REMOVE_PAGES_PATTERNS, removePagesMatching } from './scripts/routes'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { REMOVE_PAGES_PATTERNS } from './scripts/constants'
+import { hello } from './scripts/hello'
+import { addonModules } from './scripts/modules'
+import { removePagesMatching } from './scripts/routes'
+
+const currentDir = dirname(fileURLToPath(import.meta.url))
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,17 +18,26 @@ export default defineNuxtConfig({
     pageTransition: { mode: 'out-in', name: 'page' },
   },
   colorMode: {
+    classPrefix: '',
     classSuffix: '',
-    dataValue: 'theme', // activate data-theme in <html> tag
-    preference: 'system', // default theme 'system'
+    componentName: 'ColorScheme',
+    dataValue: 'theme',
+    fallback: 'light',
+    globalName: '__NUXT_COLOR_MODE__',
+    hid: 'nuxt-color-mode-script',
+    preference: 'system',
+    storageKey: 'nuxt-color-mode',
   },
   css: [
-    '@/assets/styles/transition.scss',
+    join(currentDir, './assets/styles/transition.scss'),
   ],
   devtools: {
     enabled: true,
   },
   hooks: {
+    'app:resolve': () => {
+      hello()
+    },
     'pages:extend': (pages) => {
       removePagesMatching(REMOVE_PAGES_PATTERNS, pages)
     },
@@ -54,10 +71,7 @@ export default defineNuxtConfig({
         name: '日本語',
       },
     ],
-    strategy: 'prefix_except_default',
-  },
-  linkChecker: {
-    enabled: false,
+    strategy: 'no_prefix',
   },
   modules: [
     // UI & Style
@@ -67,9 +81,6 @@ export default defineNuxtConfig({
 
     // Animation
     '@formkit/auto-animate/nuxt',
-
-    // Router
-    // 'nuxt-typed-router',
 
     // State management
     '@pinia/nuxt',
@@ -82,14 +93,9 @@ export default defineNuxtConfig({
     // I18n
     '@nuxtjs/i18n',
 
-    // SEO
-    '@nuxtjs/seo',
-
     // Utils
-    'dayjs-nuxt',
     'nuxt-lodash',
+
+    ...addonModules(),
   ],
-  site: {
-    url: import.meta.env.NUXT_SITE_URL,
-  },
 })

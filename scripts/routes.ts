@@ -1,17 +1,6 @@
 import type { NuxtPage } from 'nuxt/schema'
 
-/**
- * 删除匹配正则表达式的页面
- */
-export const REMOVE_PAGES_PATTERNS = [
-  // 不匹配 TypeScript 文件
-  /\.ts$/,
-  // 不匹配 components/* 目录
-  /components\//,
-]
-
-if (!import.meta.env.DEV)
-  REMOVE_PAGES_PATTERNS.push(/demo\//)
+import { log } from './log'
 
 /**
  * 删除匹配正则表达式的页面
@@ -33,6 +22,6 @@ export function removePagesMatching(patterns: RegExp[], pages: NuxtPage[]) {
   }
   for (const page of pagesToRemove) {
     pages.splice(pages.indexOf(page), 1)
-    console.log(`[removePagesMatching] Removed page: ${page.path} => ${page.file}`)
+    log(`移除页面: ${page.path} => ${page.file}`, 'Router')
   }
 }
