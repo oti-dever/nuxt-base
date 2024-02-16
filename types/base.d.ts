@@ -1,0 +1,1 @@
+type SystemThemeType = 'dark' | 'light'
