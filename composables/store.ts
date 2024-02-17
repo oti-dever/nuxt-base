@@ -4,10 +4,6 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 const store = createPinia()
 store.use(piniaPluginPersistedstate)
 
-export {
-  store,
-}
-
 /**
  * Pinia 储存实例
  * @returns Pinia store
