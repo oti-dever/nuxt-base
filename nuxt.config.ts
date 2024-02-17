@@ -35,11 +35,11 @@ export default defineNuxtConfig({
     enabled: true,
   },
   hooks: {
-    'app:resolve': () => {
-      hello()
-    },
     'pages:extend': (pages) => {
       removePagesMatching(REMOVE_PAGES_PATTERNS, pages)
+    },
+    'ready': () => {
+      hello()
     },
   },
   i18n: {

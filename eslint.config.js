@@ -6,6 +6,9 @@ const compat = new FlatCompat()
 
 export default antfu({
   formatters: true,
+  ignores: [
+    'base',
+  ],
   markdown: false,
   typescript: {
     tsconfigPath: 'tsconfig.json',

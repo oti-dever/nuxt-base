@@ -7,3 +7,11 @@ store.use(piniaPluginPersistedstate)
 export {
   store,
 }
+
+/**
+ * Pinia 储存实例
+ * @returns Pinia store
+ */
+export function useStore() {
+  return store
+}

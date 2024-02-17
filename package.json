@@ -7,9 +7,10 @@
     "dev": "nuxt dev .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
-    "postinstall": "nuxt prepare && pnpm simple-git-hooks",
+    "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare": "simple-git-hooks && nuxt prepare .playground"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",

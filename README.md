@@ -45,7 +45,7 @@ git submodule update --init --recursive
 更新指定子模块：
 
 ```bash
-git submodule update --remote common
+git submodule update --remote base
 ```
 
 ## License
