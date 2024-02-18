@@ -5,12 +5,12 @@
   "packageManager": "pnpm@8.15.3",
   "scripts": {
     "build": "nuxt build .playground",
-    "dev": "nuxt dev .playground",
+    "dev": "nuxt dev .playground --open",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "simple-git-hooks && nuxt prepare .playground"
+    "prepare": "simple-git-hooks && nuxt prepare .playground && nuxt prepare packages/antdv-pro"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",

@@ -1,0 +1,14 @@
+{
+  "name": "nuxt-antdv-pro",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --open",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prepare": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@ant-design-vue/nuxt": "^1.4.1"
+  }
+}

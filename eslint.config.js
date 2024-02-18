@@ -16,7 +16,6 @@ export default antfu(
     markdown: false,
     // enable type aware rules
     typescript: {
-      tsconfigPath: 'tsconfig.json',
     },
   },
   // sorting various data
@@ -50,4 +49,14 @@ export default antfu(
       },
     }],
   }),
+  {
+    languageOptions: {
+      parserOptions: {
+        project: [
+          'tsconfig.json',
+          'packages/*/tsconfig.json',
+        ],
+      },
+    },
+  },
 )

@@ -98,4 +98,6 @@ export default defineNuxtConfig({
 
     ...addonModules(),
   ],
+  tailwindcss: {
+  },
 })
