@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/* eslint perfectionist/sort-vue-attributes: off */
 import type { CSSProperties } from 'vue'
 
 import { theme as antdTheme } from 'ant-design-vue'

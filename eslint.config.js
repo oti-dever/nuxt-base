@@ -14,7 +14,6 @@ export default antfu(
       '.base',
     ],
     markdown: false,
-    // enable type aware rules
     typescript: {
     },
   },
@@ -24,6 +23,7 @@ export default antfu(
   ...compat.config({
     extends: ['plugin:tailwindcss/recommended'],
     rules: {
+      'tailwindcss/no-custom-classname': 'off',
     },
   }),
   ...compat.config({
@@ -57,6 +57,11 @@ export default antfu(
           'packages/*/tsconfig.json',
         ],
       },
+    },
+  },
+  {
+    rules: {
+      'perfectionist/sort-vue-attributes': 'off',
     },
   },
 )

@@ -10,7 +10,9 @@
     "preview": "nuxt preview .playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "simple-git-hooks && nuxt prepare .playground && nuxt prepare packages/antdv-pro"
+    "prepare:antd": "nuxt prepare packages/antdv-pro",
+    "prepare:daisyui": "nuxt prepare packages/daisyui",
+    "prepare": "simple-git-hooks && nuxt prepare .playground && pnpm prepare:antd && pnpm prepare:daisyui"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
