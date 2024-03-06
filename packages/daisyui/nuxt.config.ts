@@ -1,9 +1,13 @@
+import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 
 import { enabledThemes } from './types/theme'
 
 export default defineNuxtConfig({
   extends: ['../..'],
+  modules: [
+    '@vite-pwa/nuxt',
+  ],
   tailwindcss: {
     config: {
       content: [
@@ -17,6 +21,7 @@ export default defineNuxtConfig({
         themes: enabledThemes,
       },
       plugins: [
+        typography(),
         daisyui,
       ],
     },

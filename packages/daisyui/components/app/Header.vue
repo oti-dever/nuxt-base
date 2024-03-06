@@ -4,12 +4,15 @@ import type { LocaleObject } from '@nuxtjs/i18n'
 import { enabledThemes } from '../../types/theme'
 
 const { locale, locales } = useI18n()
-// const switchLocalePath = useSwitchLocalePath()
 const localePath = useLocalePath()
 
 const availableLocales = computed(() => {
   return (locales.value as LocaleObject[]).filter(i => i.code !== locale.value)
 })
+
+function changeLocal(l: LocaleObject) {
+  locale.value = l.code
+}
 </script>
 
 <template>
@@ -21,19 +24,23 @@ const availableLocales = computed(() => {
             <path d="M4 6h16M4 12h16M4 18h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
           </svg>
         </label>
-        <ul class="menu dropdown-content menu-sm rounded-box bg-base-100 z-30 mt-3 w-52 p-2 shadow" tabindex="0">
-          <li>
-            <NuxtLink :to="localePath('/')">
-              Links
-            </NuxtLink>
-          </li>
-        </ul>
+        <slot name="menu">
+          <ul class="menu dropdown-content menu-sm rounded-box bg-base-100 z-30 mt-3 w-52 p-2 shadow" tabindex="0">
+            <li>
+              <NuxtLink :to="localePath('/')">
+                Links
+              </NuxtLink>
+            </li>
+          </ul>
+        </slot>
       </div>
     </div>
     <div class="navbar-center">
-      <NuxtLink :to="localePath('/')" class="btn btn-ghost text-xl">
-        Home
-      </NuxtLink>
+      <slot name="center">
+        <NuxtLink :to="localePath('/')" class="btn btn-ghost text-xl">
+          Home
+        </NuxtLink>
+      </slot>
     </div>
     <div class="navbar-end">
       <div class="dropdown dropdown-end">
@@ -42,7 +49,7 @@ const availableLocales = computed(() => {
         </label>
         <ul class="menu dropdown-content rounded-box bg-base-100 z-30 mt-4 w-52 p-2 shadow" tabindex="0">
           <li v-for="l in availableLocales" :key="l.code">
-            <a @click="locale = l.code">
+            <a @click="changeLocal(l)">
               {{ l.name }}
             </a>
           </li>

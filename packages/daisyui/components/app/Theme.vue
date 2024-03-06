@@ -6,11 +6,15 @@ defineProps<{
   themes: string[]
 }>()
 
+const preferredDark = usePreferredDark()
+const systemDefaultTheme = computed(() => {
+  return preferredDark.value ? 'dark' : 'light'
+})
 const { t } = useI18n({ useScope: 'local' })
 </script>
 
 <template>
-  <div title="Change Theme" class="dropdown dropdown-end" :class="dropdownClasses">
+  <div :title="t('change_theme')" class="dropdown dropdown-end" :class="dropdownClasses">
     <div tabindex="0" class="btn" :class="btnClasses">
       <svg
         width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -34,34 +38,39 @@ const { t } = useI18n({ useScope: 'local' })
       :class="contentClasses"
     >
       <div class="grid grid-cols-1 gap-3 p-3" tabindex="0">
-        <template v-for="theme in themes" :key="theme">
-          <button class="outline-base-content overflow-hidden rounded-lg text-left">
-            <span
-              :data-theme="theme" class="bg-base-100 text-base-content block w-full cursor-pointer font-sans"
-              @click="$colorMode.preference = theme"
-            >
-              <span class="grid grid-cols-5 grid-rows-3">
-                <span class="col-span-5 row-span-3 row-start-1 flex items-center gap-2 px-4 py-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
-                    class="size-3 shrink-0" :class="{ invisible: $colorMode.preference !== theme }"
-                  >
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  <span class="grow text-sm">
-                    {{ t(theme) }}
-                  </span>
-                  <span class="flex h-full shrink-0 flex-wrap gap-1">
-                    <span class="bg-primary w-2 rounded" />
-                    <span class="bg-secondary w-2 rounded" />
-                    <span class="bg-accent w-2 rounded" />
-                    <span class="bg-neutral w-2 rounded" />
+        <ClientOnly>
+          <template v-for="theme in themes" :key="theme">
+            <button class="outline-base-content overflow-hidden rounded-lg text-left">
+              <span
+                :data-theme="theme !== 'system' ? theme : systemDefaultTheme"
+                class="bg-base-100 text-base-content block w-full cursor-pointer font-sans"
+                @click="$colorMode.preference = theme"
+              >
+                <span class="grid grid-cols-5 grid-rows-3">
+                  <span class="col-span-5 row-span-3 row-start-1 flex items-center gap-2 px-4 py-3">
+                    <div v-if="$colorMode.preference === theme">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="currentColor" class="size-3 shrink-0"
+                      >
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                      </svg>
+                    </div>
+                    <span class="grow text-sm">
+                      {{ t(theme) }}
+                    </span>
+                    <span class="flex h-full shrink-0 flex-wrap gap-1">
+                      <span class="bg-primary w-2 rounded" />
+                      <span class="bg-secondary w-2 rounded" />
+                      <span class="bg-accent w-2 rounded" />
+                      <span class="bg-neutral w-2 rounded" />
+                    </span>
                   </span>
                 </span>
               </span>
-            </span>
-          </button>
-        </template>
+            </button>
+          </template>
+        </ClientOnly>
       </div>
     </div>
   </div>
@@ -69,6 +78,7 @@ const { t } = useI18n({ useScope: 'local' })
 
 <i18n lang="yaml">
 en:
+  change_theme: Change Theme
   system: System
   light: Light
   dark: Dark
@@ -104,6 +114,7 @@ en:
   sunset: Sunset
   change_theme_btn: Theme
 zh:
+  change_theme: 更改主题
   system: 系统
   light: 明亮
   dark: 黑暗
@@ -139,6 +150,7 @@ zh:
   sunset: 日落
   change_theme_btn: 主题
 tw:
+  change_theme: 更改主題
   system: 系統
   light: 明亮
   dark: 黑暗
@@ -174,6 +186,7 @@ tw:
   sunset: 日落
   change_theme_btn: 主題
 ja:
+  change_theme: テーマを変更
   system: システム
   light: 明るい
   dark: 暗い
