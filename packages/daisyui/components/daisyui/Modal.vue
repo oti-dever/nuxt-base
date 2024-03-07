@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import type { VNodeRef } from 'vue'
-
-const dialogRef = ref<VNodeRef | null>(null)
+const dialogRef = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-  <dialog :ref="dialogRef" class="modal">
+  <dialog ref="dialogRef" class="modal">
     <div class="modal-box">
       <h3 class="text-lg font-bold">
         Hello!

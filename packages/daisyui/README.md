@@ -24,10 +24,10 @@ DaisyUI 是一个 Tailwind CSS 插件，用于快速制作精美的页面和简�
 - [ ] `AppFooter`：页面通用 Footer
 - [x] `DaisyButton`：按钮
 - [ ] 反馈组件
-  - [ ] `DaisyAlert`：警告提示
+  - [x] `DaisyAlert`：警告提示
   - [x] `DaisyLoading`：加载
-  - [ ] `DaisyProgress` 进度条
-  - [ ] `DaisyRadialProgress` 圆形进度条
+  - [x] `DaisyProgress` 进度条
+  - [x] `DaisyRadialProgress` 圆形进度条
   - [ ] `DaisySkeleton` 骨架屏
   - [ ] `DaisyToast` 弹框（实现 API）
   - [ ] `DaisyTooltip` 文字提示（实现 API）

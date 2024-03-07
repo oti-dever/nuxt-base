@@ -28,6 +28,12 @@ const { t } = useI18n({ useScope: 'local' })
           {{ t('button') }} OFF
         </template>
       </DaisyuiSwap>
+      <DaisyuiAlert type="error" shadow>
+        {{ t('button') }}
+      </DaisyuiAlert>
+      <DaisyuiLoading />
+      <DaisyuiProgress />
+      <DaisyuiRadialProgress :border="4" :value="32" type="primary" :size="200" />
     </div>
   </div>
 </template>
